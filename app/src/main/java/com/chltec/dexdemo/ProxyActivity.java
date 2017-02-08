@@ -55,9 +55,8 @@ public class ProxyActivity extends AppCompatActivity {
         Log.d(TAG, "start launchTargetActivity, className=" + className);
         File dexOutputDir = this.getDir("dex", 0);
         final String dexOutputPath = dexOutputDir.getAbsolutePath();
-        ClassLoader localClassLoader = ClassLoader.getSystemClassLoader();
         DexClassLoader dexClassLoader = new DexClassLoader(mDexPath,
-                dexOutputPath, null, localClassLoader);
+                dexOutputPath, null, getClassLoader());
         try {
             Class<?> localClass = dexClassLoader.loadClass(className);
             Constructor<?> localConstructor = localClass
